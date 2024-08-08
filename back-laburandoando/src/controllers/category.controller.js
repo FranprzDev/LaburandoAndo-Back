@@ -86,19 +86,9 @@ const getCategoriesByName = async (req, res) => {
         });
     }
 
-    try {
-        const categories = await Category.find({ name: { $regex: name, $options: "i" } });
-        res.status(200).json({
-            data: categories,
-            error: null,
-        });
-    } catch (error) {
-        console.error("Error al obtener las categorías:", error);
-        res.status(500).json({
-            data: null,
-            error: "Ha ocurrido un error al obtener las categorías.",
-        });
-    }
+    console.log(name)
+
+
 };
 
 module.exports = {

@@ -1,20 +1,16 @@
-/* CRUD de trabajadores */
-
 const Worker = require("../models/worker.model");
-const { validationResult } = require("express-validator");
-const { expressValidations } = require("../middlewares/common.validations");
+const { cryptPassword } = require("../common/functions");
 
 const createWorker = async (req, res) => {
-  const { fullname, dni, email, phone, address, birthdate } = req.body;
+  const { fullname, mail, password, phone, address } = req.body;
 
   try {
     const worker = new Worker({
       fullname: fullname,
-      dni: dni,
-      email: email,
+      mail: mail,
       phone: phone,
       address: address,
-      birthdate: birthdate,
+      password: cryptPassword(password),
     });
 
     await worker.save();
@@ -25,7 +21,7 @@ const createWorker = async (req, res) => {
   } catch (error) {
     console.error("Error al crear el trabajador:", error);
     res.status(500).json({
-      data: [],
+      data: null,
       error: ["Ha ocurrido un error al crear el trabajador."],
     });
   }
@@ -41,7 +37,7 @@ const getWorkers = async (req, res) => {
   } catch (error) {
     console.error("Error al obtener los trabajadores:", error);
     res.status(500).json({
-      data: [],
+      data: null,
       error: ["Ha ocurrido un error al obtener los trabajadores."],
     });
   }
@@ -49,6 +45,13 @@ const getWorkers = async (req, res) => {
 
 const getWorkerById = async (req, res) => {
   const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({
+      data: null,
+      error: ["El id es requerido"],
+    });
+  }
 
   try {
     const worker = await Worker.findById(id);
@@ -59,7 +62,7 @@ const getWorkerById = async (req, res) => {
   } catch (error) {
     console.error("Error al obtener el trabajador:", error);
     res.status(500).json({
-      data: [],
+      data: null,
       error: ["Ha ocurrido un error al obtener el trabajador."],
     });
   }
@@ -68,16 +71,25 @@ const getWorkerById = async (req, res) => {
 const getWorkerByName = async (req, res) => {
   const { fullname } = req.params;
 
+  if (!fullname)
+    return res.status(400).json({
+      data: null,
+      error: ["El nombre es requerido"],
+    });
+
   try {
-    const worker = await Worker.findOne({ fullname: fullname });
-    res.status(200).json({
+    const worker = await Worker.find({
+      fullname: { $regex: fullname, $options: "i" },
+    });
+
+    return res.status(200).json({
       data: worker,
       error: [],
     });
   } catch (error) {
     console.error("Error al obtener el trabajador:", error);
     res.status(500).json({
-      data: [],
+      data: null,
       error: ["Ha ocurrido un error al obtener el trabajador."],
     });
   }
@@ -85,11 +97,11 @@ const getWorkerByName = async (req, res) => {
 
 const updateWorker = async (req, res) => {
   const { id } = req.params;
-  const { email, phone, address, birthdate, img } = req.body;
+  const { email, phone, address, img } = req.body;
 
   if (!id) {
     return res.status(400).json({
-      data: [],
+      data: null,
       error: ["El id es requerido."],
     });
   }
@@ -119,35 +131,10 @@ const updateWorker = async (req, res) => {
   }
 };
 
-const deleteWorker = async (req, res) => {
-  const { id } = req.params;
-
-  if (!id) {
-    return res.status(400).json({
-      data: [],
-      error: ["El id es requerido."],
-    });
-  }
-
-  try {
-    await Worker.findByIdAndDelete(id);
-    res.status(200).json({
-      data: [],
-      error: ["Trabajador eliminado exitosamente."],
-    });
-  } catch (error) {
-    console.error("Error al eliminar el trabajador:", error);
-    res.status(500).json({
-      data: [],
-      error: ["Ha ocurrido un error al eliminar el trabajador."],
-    });
-  }
-};
-
 module.exports = {
-    createWorker,
-    getWorkers,
-    getWorkerById,
-    getWorkerByName,
-    updateWorker,
-}
+  createWorker,
+  getWorkers,
+  getWorkerById,
+  getWorkerByName,
+  updateWorker,
+};

@@ -39,7 +39,8 @@ const userSchema = mongoose.Schema({
     },
     img: {
         type: String,
-        required: false,
+        required: true,
+        default: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Fso%2Fdefault-avatar&psig=AOvVaw3vfpKCE4HWFPsEOz5IPJLB&ust=1723184244314000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKj9ztff5IcDFQAAAAAdAAAAABAE",
         trim: true,
         unique: false,
     },

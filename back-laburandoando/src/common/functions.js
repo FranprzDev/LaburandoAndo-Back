@@ -19,8 +19,6 @@ const fillCategories = () => {
 };
 
 const fillUsers = () => {
-  console.log("UserArray: ", userArray);
-
   userArray.forEach((user) => {
     const newUser = new User({
       fullname: user.fullname,

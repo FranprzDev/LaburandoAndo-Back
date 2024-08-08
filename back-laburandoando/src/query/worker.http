@@ -1,0 +1,20 @@
+### Obtener todos los trabajadores
+GET http://localhost:3000/worker/
+
+### Obtener un trabajador por ID.
+GET http://localhost:3000/worker/66b433ad023c76f14a17be03
+
+### Obtener un trabajador por nombre
+GET http://localhost:3000/worker/all/l
+
+### Crear un trabajador
+POST http://localhost:3000/worker/create
+Content-Type: application/json
+
+{
+    "fullname": "Francisco Perez",
+    "mail": "franutn23@gmail.com",
+    "password": "Makak2S!Ado",
+    "phone": "3815412480",
+    "address": "Calle falsa 123"
+}

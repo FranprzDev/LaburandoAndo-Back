@@ -1,37 +1,37 @@
 const express = require("express");
-const { getWorkers } = require("../controllers/worker.controller");
+const {
+  getWorkers,
+  createWorker,
+  getWorkerById,
+  getWorkerByName,
+  updateWorker,
+  updateWorkerImg,
+} = require("../controllers/worker.controller");
+const { body, param } = require("express-validator");
+const { expressValidations } = require("../middlewares/common.validations");
 
 const workerRouter = express.Router();
 
-workerRouter.post("/create", () => {
-  console.log("Create Worker");
-});
-
-workerRouter.get("/", 
-  getWorkers,
+workerRouter.post(
+  "/create",
+  body("fullname").isString(),
+  body("mail").isString(),
+  body("phone").isString(),
+  body("address").isString(),
+  expressValidations,
+  createWorker
 );
 
-workerRouter.get("/find-by-fullname/:fullname", () => {
-  console.log("Find Worker By Fullname");
-});
+workerRouter.get("/", getWorkers);
+
+workerRouter.get("/all/:fullname", getWorkerByName);
+
+workerRouter.get("/:id", param("id").isMongoId(), getWorkerById);
 
 workerRouter.put("/update/:id", () => {
-  console.log("Update Worker");
-  /* se pueden actualizar varias cositas */
+  param("id").isMongoId(),
+  updateWorker
 });
 
-workerRouter.put("/red", () => {
-  console.log("Add social media");
-});
 
-workerRouter.put("/hours", () => {
-    console.log("Add hours");
-});
-
-workerRouter.put("/category", () => {
-    console.log("Add category");
-});
-
-/* ¿ Añadimos lo de que tenga la fecha del calendario disponible ? */
-
-module.exports = workerRouter
+module.exports = workerRouter;

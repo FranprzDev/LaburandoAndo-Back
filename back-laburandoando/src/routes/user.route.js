@@ -1,20 +1,32 @@
 const express = require("express");
+const { param } = require("express-validator");
+const { updateImg, getUsers, updatePassword } = require("../controllers/user.controllers");
 
 const userRouter = express.Router();
+
+userRouter.get("/", 
+    getUsers
+);
+
+userRouter.patch("/updateImg/:id", 
+    param("id").isMongoId(),
+    updateImg
+)
+
+userRouter.patch("/updatePassword/:id", 
+    param("id").isMongoId(),
+    updatePassword
+)
 
 userRouter.post("/create", () => {
     console.log("Create User");
 })
 
-userRouter.get("/find-all", () => {
-    console.log("Find All Users");
-});
+
 
 
 userRouter.put("/update/:id", () => {
     console.log("Update User");
-
-    /* Supongo que se puede actualizar unicamente password & mail */ 
 });
 
 /* Corresponden a comments y stars respectivamente */
@@ -23,8 +35,5 @@ userRouter.put("/comment", () => {
     console.log("Add comment");
 });
 
-userRouter.put("/rate", () => {
-    console.log("Add rate");
-});
 
 module.exports = userRouter;
