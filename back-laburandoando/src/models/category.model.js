@@ -13,12 +13,6 @@ const categorySchema = mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  /* Relaciones */
-  work: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Work",
-    required: true,
-  },
 });
 
 const Category = mongoose.model("Category", categorySchema);

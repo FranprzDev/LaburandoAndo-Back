@@ -1,22 +1,35 @@
 const express = require("express");
-const { createCategory } = require("../controllers/category.controller");
+const { createCategory, getCategories, getCategoriesByName, getCategoriesById } = require("../controllers/category.controller");
 
-// const { body, param } = require("express-validator");
+const { body, param } = require("express-validator");
 const { expressValidations } = require("../middlewares/common.validations");
 // const { verifyJWT } = require("../middlewares/auth.validations");
 
-/* Recordar el verifyjwt */
-
 const categoryRouter = express.Router();
 
-categoryRouter.post("/create", [], expressValidations, createCategory);
+categoryRouter.post(
+  "/create",
+  // verifyJWT,
+  body("name").isString(),
+  expressValidations,
+  createCategory
+);
 
-categoryRouter.get("/find-all", () => {
-  console.log("Find All Categories");
-});
+categoryRouter.get("/get-all",  
+  expressValidations,
+  getCategories,
+);
 
-categoryRouter.get("/find-by-name/:name", () => {
-  console.log("Find Category By Name");
-});
+categoryRouter.get("/get-by-id/:id",
+  param("id").isMongoId(),
+  expressValidations,
+  getCategoriesById
+);
+
+categoryRouter.get("/find-by-name/:name",
+  param("name").isString(),
+  expressValidations,
+  getCategoriesByName
+);
 
 module.exports = categoryRouter;

@@ -21,13 +21,13 @@ const hoursSchema = mongoose.Schema({
         default: Date.now
     },
     /* Relaciones */
-    worker: {
+    work: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Worker',
+        ref: 'Work',
         required: true
     }
 });
 
-const Hours = mongoose.model('Hours', hoursSchema)
+const PricePerHour = mongoose.model('PricePerHour', hoursSchema)
 
-module.exports = Hours
+module.exports = PricePerHour

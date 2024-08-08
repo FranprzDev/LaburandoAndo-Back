@@ -9,11 +9,12 @@ const morgan = require("morgan");
 const user = require("./src/routes/user.route");
 const workerRouter = require("./src/routes/worker.route");
 const categoryRouter = require("./src/routes/category.route");
+const { fillDB } = require("./src/common/functions");
 
 const app = express();
 app.use(cors());
 
-const port = 8000;
+const port = 3000;
 
 app.use(express.json({ limit: "50mb" }));
 
@@ -29,7 +30,8 @@ app.use("/category", categoryRouter);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("Conectado a la base de datos");
+
+    fillDB();
 
     app.listen(port, () => {
       console.log(`La aplicación se está ejecutando en el puerto ${port}`);

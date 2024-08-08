@@ -17,15 +17,31 @@ const workSchema = mongoose.Schema({
     minLength: 3,
     maxLength: 70,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now(),
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+      required: false,
+    },
+  ],
+  PricePerHour: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "PricePerHour",
+    required: true,
   },
-  /* Relaciones */
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+    required: true,
+  },
   worker: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Worker",
     required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
   },
 });
 

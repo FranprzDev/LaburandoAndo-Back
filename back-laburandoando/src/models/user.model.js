@@ -1,21 +1,26 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-    name: {
+    fullname: {
         type: String,
         required: true,
         trim: true,
         unique: false,
         minLength: 3,
-        maxLength: 25
+        maxLength: 50
     },
-    lastname: {
+    mail: {
         type: String,
         required: true,
         trim: true,
-        unique: false,
-        minLength: 3,
-        maxLength: 25
+        unique: true,
+        validate: {
+            validator: function(value) {
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              return emailRegex.test(value);
+            },
+            message: props => `${props.value} no es un correo electrónico válido.`,
+        },
     },
     password: {
         type: String,
@@ -32,19 +37,17 @@ const userSchema = mongoose.Schema({
             message: props => `${props.value} no es una contraseña válida. Debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.`,
         },
     },
-    mail: {
+    img: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
-        unique: true,
-        validate: {
-            validator: function(value) {
-              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-              return emailRegex.test(value);
-            },
-            message: props => `${props.value} no es un correo electrónico válido.`,
-        },
+        unique: false,
     },
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+        required: false
+    }],
     createdAt: {
         type: Date,
         default: Date.now()

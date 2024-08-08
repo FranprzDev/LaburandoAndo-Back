@@ -9,6 +9,14 @@ const commentSchema = mongoose.Schema({
     minLength: 3,
     maxLength: 70,
   },
+  stars: {
+    type: Number,
+    required: true,
+    trim: true,
+    unique: false,
+    min: 1,
+    max: 5,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
