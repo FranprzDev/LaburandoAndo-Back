@@ -15,12 +15,12 @@ categoryRouter.post(
   createCategory
 );
 
-categoryRouter.get("/get-all",  
+categoryRouter.get("/",  
   expressValidations,
   getCategories,
 );
 
-categoryRouter.get("/get-by-id/:id",
+categoryRouter.get("/:id",
   param("id").isMongoId(),
   expressValidations,
   getCategoriesById

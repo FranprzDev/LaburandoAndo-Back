@@ -1,0 +1,16 @@
+### Obtener todas las categorías
+GET http://localhost:3000/category/
+
+### Obtener una categoría por ID.
+GET http://localhost:3000/category/66b40f7085e0fa09f08a488a
+
+### Obtener categorías por nombre
+GET http://localhost:3000/category/find-by-name/prof
+
+### Crear una categoría
+POST http://localhost:3000/category/create
+Content-Type: application/json
+
+{
+    "name": "Jugador Profesional"
+}

@@ -1,4 +1,5 @@
 const express = require("express");
+const { getWorkers } = require("../controllers/worker.controller");
 
 const workerRouter = express.Router();
 
@@ -6,9 +7,9 @@ workerRouter.post("/create", () => {
   console.log("Create Worker");
 });
 
-workerRouter.get("/find-all", () => {
-  console.log("Find All Workers");
-});
+workerRouter.get("/", 
+  getWorkers,
+);
 
 workerRouter.get("/find-by-fullname/:fullname", () => {
   console.log("Find Worker By Fullname");

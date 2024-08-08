@@ -1,8 +1,3 @@
-/* Controlador para los trabajos */
-
-const express = require("express");
-const { validationResult } = require("express-validator");
-const { expressValidations } = require("../middlewares/common.validations");
 const Work = require("../models/work.model");
 
 const createWork = async (req, res) => {
