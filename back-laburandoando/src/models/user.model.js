@@ -44,6 +44,16 @@ const userSchema = mongoose.Schema({
         trim: true,
         unique: false,
     },
+    local: {
+        type: Boolean,
+        required: true,
+    },
+    googleId: {
+        type: String,
+        required: false,
+        trim: true,
+        unique: false,
+    },
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment",

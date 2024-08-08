@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ### Actualizar contraseña de un usuario.
-PATCh http://localhost:3000/user/updatePassword/66b4634a6d5714558d75793c
+PATCH http://localhost:3000/user/updatePassword/66b4634a6d5714558d75793c
 Content-Type: application/json
 
 {

@@ -65,7 +65,12 @@ const fillDB = () => {
   });
 };
 
+const comparePassword = (password, hash) => {
+  return bcrypt.compare(password, hash);
+}
+
 module.exports = {
   cryptPassword,
   fillDB,
+  comparePassword,
 };

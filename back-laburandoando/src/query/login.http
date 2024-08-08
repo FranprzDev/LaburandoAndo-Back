@@ -1,0 +1,44 @@
+### Crear cuenta de cliente en DB.
+POST http://localhost:3000/auth/local/register
+Content-Type: application/json
+
+{
+    "fullname": "Josedeodo",
+    "mail": "josedeodod22@gmail.com",
+    "password": "Makakak21|A"
+} 
+
+### Login de cliente en DB.
+POST http://localhost:3000/auth/local/login
+Content-Type: application/json
+
+{
+    "mail": "josedeodod22@gmail.com",
+    "password": "Makakak21|A"
+}
+
+### Crear un trabajador en DB.
+POST http://localhost:3000/auth/local/register/worker
+Content-Type: application/json
+
+{
+    "fullname": "Francisco Perez",
+    "mail": "franutn23@gmail.com",
+    "password": "Makak2S!Ado",
+    "phone": "3815412480",
+    "address": "Calle falsa 123"
+} 
+
+### Login de trabajador en DB.
+POST http://localhost:3000/auth/local/login
+Content-Type: application/json
+
+{
+    "mail": "franufdsfsdtn23@gmail.com",
+    "password": "Makak2S!Ado"
+}
+
+
+
+### Logout de cliente en DB.
+GET http://localhost:3000/auth/logout
