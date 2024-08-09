@@ -1,0 +1,36 @@
+### Obtener todos los trabajos.
+
+GET http://localhost:3000/work/
+
+### Obtener un trabajo por id (MongoId)
+GET http://localhost:3000/work/66b5c45b55b9fd5dd25335c5
+
+### Obtener un trabajo por categoría (mongoId)
+GET http://localhost:3000/work/category/66b40f7085e0fa09f08a488b
+
+
+
+### Obtener un trabajo por localización
+GET http://localhost:3000/work/location/Rem
+
+### Crear un trabajo
+POST http://localhost:3000/work/66b4634a6d5714558d757943
+Content-Type: application/json
+
+{
+    "title": "Electricista de los buenos",
+    "description": "Hago laburos con electricidad, laburo bien y no me quedo pegado.",
+    "location": "San Miguel de Tucumán",
+    "price": 1000,
+    "categoryId": "66b40f7085e0fa09f08a488b"
+}
+
+### Crear un trabajo sin categoria
+POST http://localhost:3000/work/66b4634a6d5714558d757943
+Content-Type: application/json
+
+{
+    "title": "Profe de programación",
+    "description": "El mejo programador de lavida",
+    "price": 6000
+}

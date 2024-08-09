@@ -5,4 +5,4 @@ GET http://localhost:3000/worker/
 GET http://localhost:3000/worker/66b433ad023c76f14a17be03
 
 ### Obtener un trabajador por nombre
-GET http://localhost:3000/worker/all/l
+GET http://localhost:3000/worker/l

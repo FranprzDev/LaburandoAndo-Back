@@ -5,33 +5,18 @@ const {
   getWorkerById,
   getWorkerByName,
   updateWorker,
-  updateWorkerImg,
 } = require("../controllers/worker.controller");
-const { body, param } = require("express-validator");
 const { expressValidations } = require("../middlewares/common.validations");
+const { idParamValidations } = require("../common/expressValidations");
+const { createWorkerValidations } = require("../common/expressValidations");
 
 const workerRouter = express.Router();
 
-workerRouter.post(
-  "/create",
-  body("fullname").isString(),
-  body("mail").isString(),
-  body("phone").isString(),
-  body("address").isString(),
-  expressValidations,
-  createWorker
-);
-
+workerRouter.post("/create", createWorkerValidations, expressValidations, createWorker);
 workerRouter.get("/", getWorkers);
-
-workerRouter.get("/all/:fullname", getWorkerByName);
-
-workerRouter.get("/:id", param("id").isMongoId(), getWorkerById);
-
-workerRouter.put("/update/:id", () => {
-  param("id").isMongoId(),
-  updateWorker
-});
+workerRouter.get("/:fullname", getWorkerByName);
+workerRouter.get("/:id", idParamValidations, getWorkerById);
+workerRouter.put("/update/:id", idParamValidations, updateWorker);
 
 
 module.exports = workerRouter;

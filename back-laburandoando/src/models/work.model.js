@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
+const Review = require("./review.model");
 
 const workSchema = mongoose.Schema({
-  name: {
+  title: {
     type: String,
     required: true,
     trim: true,
     unique: false,
     minLength: 3,
-    maxLength: 25,
+    maxLength: 90,
   },
   description: {
     type: String,
@@ -15,25 +16,41 @@ const workSchema = mongoose.Schema({
     trim: true,
     unique: false,
     minLength: 3,
-    maxLength: 70,
+    maxLength: 250,
   },
-  comments: [
+  location: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: false,
+    minLength: 3,
+    maxLength: 50,
+    default: "Remoto",
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
+  reviews: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Comment",
-      required: false,
+      ref: "Review",
     },
   ],
-  PricePerHour: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "PricePerHour",
+  pricePerHour: {
+    type: Number,
     required: true,
   },
-  category: {
+  currency: {
+    type: String,
+    required: false,
+    default: "ARS",
+  },
+  category: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
-    required: true,
-  },
+    required: false,
+  }],
   worker: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Worker",

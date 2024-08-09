@@ -1,6 +1,7 @@
 const express = require("express");
 const { param } = require("express-validator");
 const { updateImg, getUsers, updatePassword } = require("../controllers/user.controllers");
+const { idParamValidations } = require("../common/expressValidations");
 
 const userRouter = express.Router();
 
@@ -9,12 +10,12 @@ userRouter.get("/",
 );
 
 userRouter.patch("/updateImg/:id", 
-    param("id").isMongoId(),
+    idParamValidations,
     updateImg
 )
 
 userRouter.patch("/updatePassword/:id", 
-    param("id").isMongoId(),
+    [idParamValidations],
     updatePassword
 )
 
