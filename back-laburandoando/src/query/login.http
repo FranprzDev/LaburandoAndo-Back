@@ -17,14 +17,21 @@ Content-Type: application/json
     "password": "Makakak21|A"
 }
 
+### Checkear la sesión
+GET http://localhost:3000/auth/check-session
+Cookie: connect.sid=s%3AQxt8-Rxb3omVoGTJY-l_iiFD-ujG2COg.RFzoE4Odh%2FPTnlA9jCP%2FH%2BEgG5mzicORikL2dp0aHCM
+
+
+
+
 ### Crear un trabajador en DB.
 POST http://localhost:3000/auth/local/register/worker
 Content-Type: application/json
 
 {
     "fullname": "Francisco Perez",
-    "mail": "franutn23@gmail.com",
-    "password": "Makak2S!Ado",
+    "mail": "franutnf23@gmail.com",
+    "password": "Makaak2S!Ado",
     "phone": "3815412480",
     "address": "Calle falsa 123"
 } 

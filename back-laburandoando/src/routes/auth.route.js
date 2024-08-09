@@ -77,24 +77,31 @@ authRouter.post('/local/register/worker', async (req, res) => {
 })
 
 authRouter.get('/local/failure', (req, res) => res.status(400).json({ data: null, error: 'El inicio de sesión fallo - LOCAL' }));
-authRouter.get('/local/success', (req, res) => 
-    {
-        // const { 
-        //     email,
-        //     password
-        //  } = req.body
-
-        //  console.log(email, password)
-        // /* Necesito devolver el usuario con los datos ya logueados*/
-
-        // res.json({ data: req.user, error: null })
+authRouter.get('/local/success', (req, res) => {
+    if (req.isAuthenticated()) {
+        res.status(200).json({ data: req.user, error: null });
+    } else {
+        res.status(401).json({ data: null, error: 'Usuario no autenticado' });
     }
+}
 );
 
-authRouter.post('/local/login', passport.authenticate('local', {
-    successRedirect: '/auth/local/success',
-    failureRedirect: '/auth/local/failure'
-}));
+authRouter.post('/local/login', (req, res, next) => {
+    passport.authenticate('login', (err, user, info) => {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.status(404).json({ data: null, error: 'Usuario no encontrado' });
+        }
+        req.login(user, { session: false }, async (err) => {
+            if (err) return next(err);
+            const body = { _id: user._id, email: user.email, role: user.role };
+            const token = jwt.sign({ user: body }, 'top_secret');
+            return res.json({ token });
+        });
+    })(req, res, next);
+});
 
 authRouter.get('/logout', (req, res) => {
     if (req.session) {

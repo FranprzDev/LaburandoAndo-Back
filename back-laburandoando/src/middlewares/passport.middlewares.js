@@ -6,22 +6,22 @@ require('dotenv').config()
 
 
 
-passport.use(new LocalStrategy({
-  usernameField: 'mail',
+passport.use('login', new LocalStrategy({
+  usernameField: 'email',
   passwordField: 'password'
-}, async (mail, password, done) => {
+}, async (email, password, done) => {
   try {
-      const user = await User.findOne({ mail });
+      const user = await User.findOne({ email });
       if (!user) {
           return done(null, false, { message: 'Usuario no encontrado' });
       }
-      const isMatch = await comparePassword(password, user.password);
-      if (!isMatch) {
+      const validate = await user.isValidPassword(password);
+      if (!validate) {
           return done(null, false, { message: 'Contraseña incorrecta' });
       }
-      return done(null, user);
-  } catch (err) {
-      return done(err);
+      return done(null, user, { message: 'Inicio de sesión exitoso' });
+  } catch (error) {
+      return done(error);
   }
 }));
 

@@ -68,7 +68,6 @@ const getWorks = async (req, res) => {
       
     const works = await Work.find()
       .populate("category")
-      .populate("reviews")
       .skip((page - 1) * limit)
       .limit(parseInt(limit));
     res.status(200).json({
@@ -97,7 +96,6 @@ const getWorkByCategory = async (req, res) => {
   try {
     const works = await Work.find({ category: idCategory })
       .populate("category")
-      .populate("reviews")
       .skip((page - 1) * limit)
       .limit(parseInt(limit));
 
@@ -126,7 +124,7 @@ const getWorkByLocation = async (req, res) => {
 
   try {
     const works = await Work.find({ location: { $regex: location, $options: 'i' } })
-      .populate("reviews").populate("category")
+      .populate("category")
       .skip((page - 1) * limit)
       .limit(parseInt(limit));
     res.status(200).json({
