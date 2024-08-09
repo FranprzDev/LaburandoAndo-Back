@@ -1,5 +1,7 @@
 const { cryptPassword } = require("../common/functions");
+const Review = require("../models/review.model");
 const User = require("../models/user.model");
+const Work = require("../models/work.model");
 
 const getUsers = async (req, res) => {
   try {

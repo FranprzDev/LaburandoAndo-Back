@@ -8,8 +8,6 @@ GET http://localhost:3000/work/66b5c45b55b9fd5dd25335c5
 ### Obtener un trabajo por categoría (mongoId)
 GET http://localhost:3000/work/category/66b40f7085e0fa09f08a488b
 
-
-
 ### Obtener un trabajo por localización
 GET http://localhost:3000/work/location/Rem
 
@@ -30,7 +28,32 @@ POST http://localhost:3000/work/66b4634a6d5714558d757943
 Content-Type: application/json
 
 {
-    "title": "Profe de programación",
-    "description": "El mejo programador de lavida",
-    "price": 6000
+    "title": "Profe de programación2",
+    "description": "El mejo programador de lavida1",
+    "price": 60003
 }
+
+### Cambia la categoría de un trabajo
+
+PATCH http://localhost:3000/work/category/66b5c4e9f185cca0a8b68675
+Content-Type: application/json
+
+{
+    "categoryId": "66b40f7085e0fa09f08a488d"
+}
+
+### Cambia el advice de un trabajo
+PATCH http://localhost:3000/work/advice/66b5c4e9f185cca0a8b68675
+Content-Type: application/json
+
+{
+    /* "name": "También le puedo cambiar esto", */
+    "description": "No me gusta trabajar con gente que no sabe lo que hace."
+}
+
+### Cambiar el estado del trabajo
+PATCH http://localhost:3000/work/status/66b5c45b55b9fd5dd25335c5
+
+
+### Eliminar un trabajo
+DELETE http://localhost:3000/work/66b66498617ebfe05f541370

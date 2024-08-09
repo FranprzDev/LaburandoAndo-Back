@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Review = require("./review.model");
 
 const workSchema = mongoose.Schema({
   title: {
@@ -31,12 +30,6 @@ const workSchema = mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  reviews: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Review",
-    },
-  ],
   pricePerHour: {
     type: Number,
     required: true,

@@ -1,0 +1,10 @@
+
+### Dejar un comentario como usuario
+PUT http://localhost:3000/review/66b5c45b55b9fd5dd25335c5
+Content-Type: application/json
+
+{
+    "userId": "66b4634a6d5714558d75793c",
+    "comment": "Es un tipazo 2, me gusto que me haga el laburo él, en un ratito me lo hizo.",
+    "stars": 5
+}

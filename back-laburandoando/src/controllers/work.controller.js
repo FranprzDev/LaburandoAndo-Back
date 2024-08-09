@@ -67,6 +67,8 @@ const getWorks = async (req, res) => {
     }
       
     const works = await Work.find()
+      .populate("category")
+      .populate("reviews")
       .skip((page - 1) * limit)
       .limit(parseInt(limit));
     res.status(200).json({
@@ -94,10 +96,11 @@ const getWorkByCategory = async (req, res) => {
 
   try {
     const works = await Work.find({ category: idCategory })
+      .populate("category")
+      .populate("reviews")
       .skip((page - 1) * limit)
       .limit(parseInt(limit));
 
-      console.log(works)
     res.status(200).json({
       data: works,
       error: null,
@@ -123,6 +126,7 @@ const getWorkByLocation = async (req, res) => {
 
   try {
     const works = await Work.find({ location: { $regex: location, $options: 'i' } })
+      .populate("reviews").populate("category")
       .skip((page - 1) * limit)
       .limit(parseInt(limit));
     res.status(200).json({
@@ -156,12 +160,12 @@ const changeCategoryWork = async (req, res) => {
         error: ["No se encontró el trabajo."],
       });
 
-    work.category, push(categoryId);
+    work.category.push(categoryId);
     await work.save();
 
     res.status(200).json({
       data: null,
-      error: ["Categoría del trabajo actualizada."],
+      error: null,
     });
   } catch (error) {
     console.error("Error al cambiar la categoría del trabajo:", error);
@@ -250,14 +254,13 @@ const deleteWork = async (req, res) => {
     });
 
   try {
-    const work = await Work.findById(id);
+    const work = await Work.findOneAndDelete({ _id: id });
     if (!work)
       return res.status(404).json({
         data: null,
         error: ["No se encontró el trabajo."],
       });
 
-    await work.delete();
     res.status(214).json({
       data: null,
       error: null,

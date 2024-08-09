@@ -31,6 +31,21 @@ const bodyNameCategoryValidations = [
     body("name").isString(),
 ]
 
+const reviewValidations = [
+  param("idWork").isMongoId(),
+  body("comment").isString(),
+]
+
+const reviewValidationsGet = [
+  param("idWork").isMongoId(),
+  param("idUser").isMongoId(),
+]
+
+const reviewValidationsGetFilter = [
+  param("idWork").isMongoId(),
+  param("stars").isNumeric(),
+]
+
 module.exports = {
   createWorkValidations,
   idParamValidations,
@@ -38,4 +53,7 @@ module.exports = {
   createWorkerValidations,
   paramNameCategoryValidations,
   bodyNameCategoryValidations,
+  reviewValidations,
+  reviewValidationsGet,
+  reviewValidationsGetFilter,
 };
