@@ -107,18 +107,4 @@ authRouter.post('/local/login', (req, res, next) => {
     })(req, res, next);
 });
 
-authRouter.get('/logout', (req, res) => {
-    if (req.session) {
-        req.session.destroy(err => {
-            if (err) {
-                res.json({ data: null, error: 'No se pudo cerrar la sesion' })
-            } else {
-                res.json({ data: 'Cierre de sesion exitoso', error: null })
-            }
-        });
-    } else {
-        res.json({ data: null, error: 'No hay una sesion activa' })
-    }
-})
-
 module.exports = authRouter
