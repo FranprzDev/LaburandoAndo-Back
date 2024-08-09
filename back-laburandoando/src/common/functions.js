@@ -8,6 +8,10 @@ function cryptPassword(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(5));
 }
 
+const comparePassword = (password, hash) => {
+  return bcrypt.compare(password, hash);
+}
+
 const fillCategories = () => {
   categoryArray.forEach((category) => {
     const newCategory = new Category({
@@ -64,10 +68,6 @@ const fillDB = () => {
     }
   });
 };
-
-const comparePassword = (password, hash) => {
-  return bcrypt.compare(password, hash);
-}
 
 module.exports = {
   cryptPassword,

@@ -3,6 +3,7 @@ const passport = require('passport');
 const User = require('../models/user.model');
 const { cryptPassword } = require('../common/functions');
 const Worker = require('../models/worker.model');
+const jwt = require('jsonwebtoken');
 
 authRouter.get('/needs-login', (req, res) => {
     res.json({ data: null, error: 'Necesita iniciar sesion' })
@@ -91,14 +92,17 @@ authRouter.post('/local/login', (req, res, next) => {
         if (err) {
             return next(err);
         }
+
         if (!user) {
             return res.status(404).json({ data: null, error: 'Usuario no encontrado' });
         }
+        
         req.login(user, { session: false }, async (err) => {
             if (err) return next(err);
-            const body = { _id: user._id, email: user.email, role: user.role };
-            const token = jwt.sign({ user: body }, 'top_secret');
-            return res.json({ token });
+
+            const client = await User.findById(user._id).lean()
+            const { password, ...clientWithoutPassword } = client;
+            return res.json({ data: clientWithoutPassword, error: null });
         });
     })(req, res, next);
 });
