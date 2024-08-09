@@ -18,12 +18,12 @@ authRouter.post('/local/register/', async (req, res) => {
     try {
         const exist = await User.findOne({ mail })
 
-        if (exist && exist.fullname) return res.json({
+        if (exist && exist?.mail) return res.json({
           data: null,
           error: 'Ya existe un usuario con ese correo',
         })
 
-        await User.create({
+        const client = await User.create({
             fullname,
             mail,
             password: cryptPassword(password),
@@ -32,7 +32,7 @@ authRouter.post('/local/register/', async (req, res) => {
 
         
         res.status(201).json({
-          data: "Usuario creado exitosamente.",
+          data: client,
           error: null,
         })
     } catch (err) {
@@ -51,14 +51,14 @@ authRouter.post('/local/register/worker', async (req, res) => {
    } = req.body
 
   try {
-      const exist = await Worker.findOne({ mail })
+      const exist = await User.findOne({ mail })
 
-      if (exist && exist.fullname) return res.json({
+      if (exist && exist?.mail) return res.status(400).json({
         data: null,
         error: 'Ya existe un trabajador con ese correo',
       })
 
-      await User.create({
+      const worker = await User.create({
           fullname,
           mail,
           password: cryptPassword(password),
@@ -68,17 +68,28 @@ authRouter.post('/local/register/worker', async (req, res) => {
       })
 
       res.status(201).json({
-        data: "Trabajador creado exitosamente.",
+        data: worker,
         error: null,
       })
   } catch (err) {
-      console.log(err)
       res.json({ data: null, error: 'No se pudo crear el trabajador' })
   }
 })
 
 authRouter.get('/local/failure', (req, res) => res.status(400).json({ data: null, error: 'El inicio de sesión fallo - LOCAL' }));
-authRouter.get('/local/success', (req, res) => res.status(200).json({ data: null, error: 'El inicio de sesión fue exitoso - LOCAL' }));
+authRouter.get('/local/success', (req, res) => 
+    {
+        // const { 
+        //     email,
+        //     password
+        //  } = req.body
+
+        //  console.log(email, password)
+        // /* Necesito devolver el usuario con los datos ya logueados*/
+
+        // res.json({ data: req.user, error: null })
+    }
+);
 
 authRouter.post('/local/login', passport.authenticate('local', {
     successRedirect: '/auth/local/success',

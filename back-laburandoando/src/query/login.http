@@ -3,9 +3,9 @@ POST http://localhost:3000/auth/local/register
 Content-Type: application/json
 
 {
-    "fullname": "Josedeodo",
-    "mail": "josedeodod22@gmail.com",
-    "password": "Makakak21|A"
+    "fullname": "Josedeodot",
+    "mail": "josedeodods22@gmail.com",
+    "password": "Makakzak21|A"
 } 
 
 ### Login de cliente en DB.
