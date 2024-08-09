@@ -40,7 +40,7 @@ const userSchema = mongoose.Schema({
     img: {
         type: String,
         required: true,
-        default: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Fso%2Fdefault-avatar&psig=AOvVaw3vfpKCE4HWFPsEOz5IPJLB&ust=1723184244314000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKj9ztff5IcDFQAAAAAdAAAAABAE",
+        default: "https://media.discordapp.net/attachments/1271548261097934871/1271583466768564368/Imagen_de_WhatsApp_2024-08-09_a_las_18.37.56_612a8ac6.jpg?ex=66b7dde3&is=66b68c63&hm=56f0c7645bf3ca0e1028530d01f492ba11269c4f9b28ecf75f1a24f9e7da0f65&=&format=webp&width=676&height=676",
         trim: true,
         unique: false,
     },
