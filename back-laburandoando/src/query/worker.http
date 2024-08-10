@@ -6,3 +6,17 @@ GET http://localhost:3000/worker/66b433ad023c76f14a17be03
 
 ### Obtener un trabajador por nombre
 GET http://localhost:3000/worker/l
+
+### Crear un trabajador
+POST http://localhost:3000/worker/create
+Content-Type: application/json
+
+{
+    "fullname": "Luis",
+    "lastname": "Perez",
+    "mail": "luisitopere1zsuki@gmail.com",
+    "phone": "3815412480",
+    "address": "Calle 123",
+    "password": "!234Fr78@",
+    "outstanding": true
+}

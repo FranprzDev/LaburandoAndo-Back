@@ -2,7 +2,7 @@ const Worker = require("../models/worker.model");
 const { cryptPassword } = require("../common/functions");
 
 const createWorker = async (req, res) => {
-  const { fullname, mail, password, phone, address } = req.body;
+  const { fullname, mail, password, phone, address, outstanding, local } = req.body;
 
   try {
     const worker = new Worker({
@@ -11,12 +11,14 @@ const createWorker = async (req, res) => {
       phone: phone,
       address: address,
       password: cryptPassword(password),
+      outstanding: outstanding ? outstanding : false,
+      local: local ? local : false,
     });
 
     await worker.save();
     res.status(201).json({
-      data: [],
-      error: ["Trabajador creado exitosamente."],
+      data: null,
+      error: null,
     });
   } catch (error) {
     console.error("Error al crear el trabajador:", error);

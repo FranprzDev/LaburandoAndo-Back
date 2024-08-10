@@ -32,10 +32,10 @@ const workerSchema = new Schema({
     default: "worker",
     enum: ["worker"],
   },
-  stars: {
-    type: Schema.Types.ObjectId,
-    ref: "Star",
-    required: false,
+  outstanding: {
+    type: Boolean,
+    required: true,
+    default: false,
   },
   works: [
     {

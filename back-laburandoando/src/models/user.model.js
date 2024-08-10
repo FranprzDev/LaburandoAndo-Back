@@ -46,7 +46,8 @@ const userSchema = mongoose.Schema({
     },
     local: {
         type: Boolean,
-        required: true,
+        required: false,
+        default: true,
     },
     googleId: {
         type: String,

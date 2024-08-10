@@ -23,8 +23,6 @@ const userArray = [
     {
         "fullname": "Juan Perez",
         "mail": "jauntest21@gmail.com",
-        "password": "123456",
-        "img": "",
     },
     {
         "fullname": "Maria Rodriguez",
@@ -36,13 +34,11 @@ const userArray = [
         "fullname": "Pedro Martinez",
         "mail": "pedro@gmail.com",
         "password": "123456",
-        "img": "",
     },
     {
         "fullname": "Jose Gonzalez",
         "mail": "joseeeaaa@gmail.com",
         "password": "123456",
-        "img": "",
     }
 ]
 
@@ -51,7 +47,6 @@ const workerArray = [
         "fullname": "Juan Perez",
         "mail": "juanWork@gmail.com",
         "password": "123456",
-        "img": "",
         "phone": "1234567890",
         "address": "Av. Siempre Viva 123"
     },
@@ -59,7 +54,6 @@ const workerArray = [
         "fullname": "Maria Lopez",
         "mail": "marialopez@gmail.com",
         "password": "123456",
-        "img": "",
         "phone": "9876543210",
         "address": "Calle Principal 456"
     },
@@ -67,7 +61,6 @@ const workerArray = [
         "fullname": "Carlos Sanchez",
         "mail": "carlossanchez@gmail.com",
         "password": "123456",
-        "img": "",
         "phone": "5555555555",
         "address": "Avenida Central 789"
     },
@@ -75,7 +68,6 @@ const workerArray = [
         "fullname": "Laura Gomez",
         "mail": "lauragomez@gmail.com",
         "password": "123456",
-        "img": "",
         "phone": "1111111111",
         "address": "Plaza Mayor 123"
     }
