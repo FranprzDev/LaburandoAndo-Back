@@ -51,7 +51,9 @@ const getWorks = async (req, res) => {
 
   try {
     if (id) {
-      const work = await Work.findById(id);
+      const work = await Work.findById(id)
+      .populate("category")
+      .populate("worker");
 
       if (!work) {
         return res.status(404).json({
@@ -65,6 +67,7 @@ const getWorks = async (req, res) => {
         error: null,
       });
     }
+
       
     const works = await Work.find()
       .populate("category")
