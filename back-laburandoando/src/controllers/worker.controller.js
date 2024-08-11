@@ -1,5 +1,6 @@
 const Worker = require("../models/worker.model");
 const { cryptPassword } = require("../common/functions");
+const User = require("../models/user.model");
 
 const createWorker = async (req, res) => {
   const { fullname, mail, password, phone, address, outstanding, local } = req.body;
@@ -56,7 +57,7 @@ const getWorkerById = async (req, res) => {
   }
 
   try {
-    const worker = await Worker.findById(id);
+    const worker = await User.findById(id);
     res.status(200).json({
       data: worker,
       error: [],

@@ -34,11 +34,20 @@ POST http://localhost:3000/auth/local/login
 Content-Type: application/json
 
 {
-    "mail": "franufdsfsdtn23@gmail.com",
-    "password": "Makak2S!Ado"
+    "mail": "franutnf23@gmail.com",
+    "password": "Makaak2S!Ado"
 }
 
 
 
 ### Logout de cliente en DB.
 GET http://localhost:3000/auth/logout
+
+
+### Logueo d en DB.
+POST http://localhost:3000/auth/jwt/login
+Content-Type: application/json
+{
+    "mail": "franutnf23@gmail.com",
+    "password": "Makaak2S!Ado"
+}

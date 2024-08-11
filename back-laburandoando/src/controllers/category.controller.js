@@ -85,10 +85,6 @@ const getCategoriesByName = async (req, res) => {
             error: "El nombre es requerido.",
         });
     }
-
-    console.log(name)
-
-
 };
 
 module.exports = {

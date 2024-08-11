@@ -14,8 +14,8 @@ const workerRouter = express.Router();
 
 workerRouter.post("/create", createWorkerValidations, expressValidations, createWorker);
 workerRouter.get("/", getWorkers);
-workerRouter.get("/:fullname", getWorkerByName);
 workerRouter.get("/:id", idParamValidations, getWorkerById);
+workerRouter.get("/name/:fullname", getWorkerByName);
 workerRouter.put("/update/:id", idParamValidations, updateWorker);
 
 
