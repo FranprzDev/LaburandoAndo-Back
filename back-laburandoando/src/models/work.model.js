@@ -33,7 +33,7 @@ const workSchema = mongoose.Schema({
   pricePerHour: {
     type: Number,
     min: 500,
-    max: 50.000,
+    max: 50000,
     required: true,
   },
   currency: {
