@@ -6,7 +6,7 @@ const workSchema = mongoose.Schema({
     required: true,
     trim: true,
     unique: false,
-    minLength: 3,
+    minLength: 15,
     maxLength: 90,
   },
   description: {
@@ -14,12 +14,12 @@ const workSchema = mongoose.Schema({
     required: true,
     trim: true,
     unique: false,
-    minLength: 3,
+    minLength: 25,
     maxLength: 250,
   },
   location: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
     unique: false,
     minLength: 3,
@@ -32,6 +32,8 @@ const workSchema = mongoose.Schema({
   },
   pricePerHour: {
     type: Number,
+    min: 500,
+    max: 50.000,
     required: true,
   },
   currency: {
@@ -42,7 +44,7 @@ const workSchema = mongoose.Schema({
   category: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
-    required: false,
+    required: true,
   }],
   worker: {
     type: mongoose.Schema.Types.ObjectId,
