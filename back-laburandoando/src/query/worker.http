@@ -12,9 +12,10 @@ POST http://localhost:3000/worker/create
 Content-Type: application/json
 
 {
-    "fullname": "Luis",
-    "lastname": "Perez",
-    "mail": "luisitopere1zsuki@gmail.com",
+    "fullname": "Luisdd",
+    "lastname": "Pereddz",
+    "mail": "luisitopedddre1zsuki@gmail.com",
+    "img": "https://media.tycsports.com/files/2022/02/24/394347/josedeodo_862x485_wmk.jpg",
     "phone": "3815412480",
     "address": "Calle 123",
     "password": "!234Fr78@",

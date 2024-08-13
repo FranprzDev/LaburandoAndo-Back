@@ -5,6 +5,8 @@ const createWork = async (req, res) => {
   const { id } = req.params;
   const { title, description, price, categoryId, currency } = req.body;
 
+  console.log("work:", req.body);
+
   if (!title || !description || !price || !id) {
     return res.status(400).json({
       data: null,

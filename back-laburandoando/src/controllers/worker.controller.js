@@ -3,7 +3,7 @@ const { cryptPassword } = require("../common/functions");
 const User = require("../models/user.model");
 
 const createWorker = async (req, res) => {
-  const { fullname, mail, password, phone, address, outstanding, local } = req.body;
+  const { fullname, mail, img, password, phone, address, outstanding, local } = req.body;
 
   try {
     const worker = new Worker({
@@ -12,6 +12,7 @@ const createWorker = async (req, res) => {
       phone: phone,
       address: address,
       password: cryptPassword(password),
+      img: img,
       outstanding: outstanding ? outstanding : false,
       local: local ? local : false,
     });

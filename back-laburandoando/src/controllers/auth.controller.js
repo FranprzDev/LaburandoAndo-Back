@@ -81,9 +81,7 @@ const jwtLogin = async (req, res) => {
     if (!isValid) {
       return res.status(401).json({ message: "Credenciales invalidas." });
     }
-
-    console.log(user);
-
+    
     const token = jwt.sign(
       {
         user: {
