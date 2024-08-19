@@ -21,3 +21,13 @@ Content-Type: application/json
     "password": "!234Fr78@",
     "outstanding": true
 }
+
+### Actualizar un trabajador
+PUT http://localhost:3000/worker/update/66b4634a6d5714558d757943
+Content-Type: application/json
+
+{
+    "fullname": "Juan Perez Chambeador",
+    "email": "juanWork@gmail.com",
+    "phone": "3815412481"
+}

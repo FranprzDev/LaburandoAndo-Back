@@ -101,25 +101,17 @@ const getWorkerByName = async (req, res) => {
 
 const updateWorker = async (req, res) => {
   const { id } = req.params;
-  const { email, phone, address, img } = req.body;
-
-  if (!id) {
-    return res.status(400).json({
-      data: null,
-      error: ["El id es requerido."],
-    });
-  }
+  const { mail, phone, address, img } = req.body;
 
   try {
     const worker = await Worker.findByIdAndUpdate(
       id,
       {
-        email: email,
+        mail: mail,
         phone: phone,
         address: address,
         img: img,
-      },
-      { new: true }
+      }
     );
     res.status(200).json({
       data: worker,
