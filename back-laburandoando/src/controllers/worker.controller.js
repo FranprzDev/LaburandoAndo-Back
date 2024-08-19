@@ -117,7 +117,6 @@ const updateWorker = async (req, res) => {
         email: email,
         phone: phone,
         address: address,
-        birthdate: birthdate,
         img: img,
       },
       { new: true }
