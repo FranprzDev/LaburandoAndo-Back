@@ -38,6 +38,11 @@ const createWork = async (req, res) => {
       data: null,
       error: null,
     });
+
+    await Worker.findByIdAndUpdate(id, {
+      $push: { works: work._id },
+    });
+
   } catch (error) {
     console.error("Error al crear el trabajo:", error);
     res.status(500).json({

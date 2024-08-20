@@ -58,7 +58,13 @@ const getWorkerById = async (req, res) => {
   }
 
   try {
-    const worker = await User.findById(id);
+    const worker = await Worker.findById(id).populate("works").populate({
+      path: 'works',
+      populate: {
+        path: 'category',
+        model: 'Category'
+      }})
+
     res.status(200).json({
       data: worker,
       error: [],
