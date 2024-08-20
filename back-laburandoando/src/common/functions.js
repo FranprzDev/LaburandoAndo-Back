@@ -5,6 +5,7 @@ const Worker = require("../models/worker.model");
 const User = require("../models/user.model");
 
 function cryptPassword(password) {
+  if(!password) return null;
   return bcrypt.hashSync(password, bcrypt.genSaltSync(5));
 }
 
