@@ -60,7 +60,8 @@ const getWorks = async (req, res) => {
     if (id) {
       const work = await Work.findById(id)
       .populate("category")
-      .populate("worker");
+      .populate("worker")
+      .populate("reviews");
 
       if (!work) {
         return res.status(404).json({
