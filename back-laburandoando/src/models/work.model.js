@@ -1,3 +1,4 @@
+const { Schema } = require("mongoose");
 const mongoose = require("mongoose");
 
 const workSchema = mongoose.Schema({
@@ -51,6 +52,12 @@ const workSchema = mongoose.Schema({
     ref: "Worker",
     required: true,
   },
+  reviews: [{
+    type: Schema.Types.ObjectId,
+    ref: "Review",
+    required: false,
+  }
+],
   createdAt: {
     type: Date,
     default: Date.now(),
