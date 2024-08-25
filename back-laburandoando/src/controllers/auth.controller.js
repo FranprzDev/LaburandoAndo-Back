@@ -52,9 +52,9 @@ const jwtRegisterWorker = async (req, res) => {
             mail,
             password: cryptPassword(password),
             fullname,
-            phone: phone === "" ? phone : "",
-            adress: adress === "" ? adress : "",
-            img: img === "" ? defaultImg : img
+            phone: phone || "",
+            adress: adress || "",
+            img: img || defaultImg
         });
 
         await newUser.save();
@@ -70,7 +70,7 @@ const jwtLogin = async (req, res) => {
   const { mail, password } = req.body;
 
   try {
-    const user = await User.findOne({ mail });
+    const user = await User.findOne({ mail: mail });
 
     if (!user) {
       return res.status(401).json({ message: "Credenciales invalidas." });
