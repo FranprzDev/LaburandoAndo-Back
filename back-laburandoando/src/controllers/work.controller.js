@@ -187,6 +187,50 @@ const changeCategoryWork = async (req, res) => {
   }
 };
 
+const updateWork = async (req, res) => {
+  const { id } = req.params
+  const {
+    title,
+    description,
+    categoryId,
+    location,
+    pricePerHour,
+  } = req.body
+
+  if (!id) {
+    return res.status(400).json({
+      data: null,
+      error: ["Debe ingresar un id."],
+    });
+  }
+  
+  try {
+    const work = await Work.findById(id);
+
+    if (!work) {
+      return res.status(404).json({
+        data: null,
+        error: ["No se encontró el trabajo."],
+      });
+    }
+
+    if (title) work.title = title;
+    if (description) work.description = description;
+    if (categoryId) work.category = categoryId;
+    if (location) work.location = location;
+    if (pricePerHour) work.pricePerHour = pricePerHour;
+
+    await work.save();
+
+    res.status(214).json({
+      data: null,
+      error: null,
+    })
+  } catch (error){
+    console.log(error)
+  }
+}
+
 const changeAdvice = async (req, res) => {
   const { id } = req.params;
   const { name, description } = req.body;
@@ -294,4 +338,5 @@ module.exports = {
   changeAdvice,
   changeStatusWork,
   deleteWork,
+  updateWork,
 };

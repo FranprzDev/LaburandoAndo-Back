@@ -46,6 +46,14 @@ const reviewValidationsGetFilter = [
   param("stars").isNumeric(),
 ]
 
+const updateValidations = [
+  param("id").isMongoId(),
+  body("categoryId").optional().isMongoId(),
+  body("location").optional().isString(),
+  body("title").isString(),
+  body("description").isString(),
+  body("pricePerHour").isNumeric(),
+]
 module.exports = {
   createWorkValidations,
   idParamValidations,
@@ -56,4 +64,5 @@ module.exports = {
   reviewValidations,
   reviewValidationsGet,
   reviewValidationsGetFilter,
+  updateValidations,
 };
