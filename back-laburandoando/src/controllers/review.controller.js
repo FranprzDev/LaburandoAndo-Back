@@ -1,4 +1,5 @@
 const Review = require("../models/review.model");
+const Work = require("../models/work.model");
 
 const addComment = async (req, res) => {
   const { idWork } = req.params;
@@ -19,11 +20,17 @@ const addComment = async (req, res) => {
     });
 
   try {
-    await Review.create({
+    const review = new Review({
       stars,
       comment,
       user: userId,
       work: idWork,
+    });
+
+    await review.save();
+
+    await Work.findByIdAndUpdate(idWork, {
+      $push: { reviews: review._id },
     });
 
     res.status(200).json({
