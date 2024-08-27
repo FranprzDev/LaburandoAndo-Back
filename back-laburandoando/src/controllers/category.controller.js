@@ -87,9 +87,35 @@ const getCategoriesByName = async (req, res) => {
     }
 };
 
+const deleteCategory = async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({
+      data: null,
+      error: "El id es requerido.",
+    });
+  }
+
+  try {
+    await Category.findByIdAndDelete(id);
+    res.status(204).json({
+      data: null,
+      error: null,
+    });
+  } catch (error) {
+    console.error("Error al eliminar la categoría:", error);
+    res.status(500).json({
+      data: null,
+      error: "Ha ocurrido un error al eliminar la categoría.",
+    });
+  }
+};
+
 module.exports = {
   createCategory,
   getCategories,
   getCategoriesById,
   getCategoriesByName,
+  deleteCategory,
 };

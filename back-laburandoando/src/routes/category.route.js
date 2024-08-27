@@ -4,6 +4,7 @@ const {
   getCategories,
   getCategoriesByName,
   getCategoriesById,
+  deleteCategory,
 } = require("../controllers/category.controller");
 const { expressValidations } = require("../middlewares/common.validations");
 const {
@@ -35,6 +36,13 @@ categoryRouter.get(
   paramNameCategoryValidations,
   expressValidations,
   getCategoriesByName
+);
+
+categoryRouter.delete(
+  "/delete/:id",
+  idParamValidations,
+  expressValidations,
+  deleteCategory
 );
 
 module.exports = categoryRouter;
