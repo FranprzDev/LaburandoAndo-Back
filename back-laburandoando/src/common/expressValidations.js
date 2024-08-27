@@ -54,6 +54,13 @@ const updateValidations = [
   body("description").isString(),
   body("pricePerHour").isNumeric(),
 ]
+
+const bodyFeedBackValidations = [
+  body("subject").isString(),
+  body("message").isString(),
+  param("id").isMongoId(),
+];
+
 module.exports = {
   createWorkValidations,
   idParamValidations,
@@ -65,4 +72,5 @@ module.exports = {
   reviewValidationsGet,
   reviewValidationsGetFilter,
   updateValidations,
+  bodyFeedBackValidations,
 };

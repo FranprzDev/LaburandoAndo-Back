@@ -1,0 +1,18 @@
+### Obtener el feedback leídos
+GET http://localhost:3000/feedback?read=true
+
+### Obtener el feedback no leídos
+GET http://localhost:3000/feedback?read=false
+
+### Crear un feedback. (El id es de un worker)
+POST http://localhost:3000/feedback/66c4d755734cf8ca314d555f 
+
+Content-Type: application/json
+
+{
+    "message": "Deberían implementar muchísimos más contadores.",
+    "subject": "Sugerencia"
+}
+
+### Marcar un feedback como leído / no leído. (El id es de un feedback)
+PATCH http://localhost:3000/feedback/66ce1b19f674dd930e41963a

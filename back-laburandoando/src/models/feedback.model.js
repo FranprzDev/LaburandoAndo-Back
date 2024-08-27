@@ -1,28 +1,28 @@
 const mongoose = require("mongoose");
 
 const feedBackSchema = mongoose.Schema({
-  title: {
+  subject: {
     type: String,
     required: true,
     trim: true,
     unique: false,
-    minLength: 3,
-    maxLength: 25,
+    enum: ["Queja", "Sugerencia", "Consulta", "Felicitación", "Petición"],
   },
-  description: {
+  message: {
     type: String,
     required: true,
-    minLength: 3,
-    maxLength: 255,
+    minLength: 25,
+    maxLength: 300,
   },
   isRead: {
     type: Boolean,
     required: true,
-    default: false
+    default: false,
   },
   worker: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Worker",
+    required: true,
   },
   createdAt: {
     type: Date,
@@ -30,6 +30,6 @@ const feedBackSchema = mongoose.Schema({
   },
 });
 
-const Feedback = mongoose.model("Feedback", feedBackSchema);
+const FeedBack = mongoose.model("Feedback", feedBackSchema);
 
-module.exports = Feedback;
+module.exports = FeedBack;

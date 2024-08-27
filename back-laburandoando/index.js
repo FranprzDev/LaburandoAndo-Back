@@ -16,6 +16,7 @@ const categoryRouter = require("./src/routes/category.route");
 const authRouter = require("./src/routes/auth.route");
 const workRouter = require("./src/routes/work.route");
 const reviewRouter = require("./src/routes/review.route");
+const feedBackRouter = require("./src/routes/feedBack.route");
 
 
 const app = express();
@@ -41,6 +42,7 @@ app.use("/category", categoryRouter);
 app.use("/auth", authRouter)
 app.use("/work", workRouter);
 app.use("/review", reviewRouter);
+app.use("/feedback", feedBackRouter)
 
 mongoose
   .connect(process.env.MONGO_URI, {
