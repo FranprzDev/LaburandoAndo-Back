@@ -86,6 +86,12 @@ const getWorks = async (req, res) => {
     const works = await Work.find()
       .populate("category")
       .populate("worker")
+      .populate({
+        path: "reviews",
+        populate: {
+          path: "user",
+        },
+      })
       .skip((page - 1) * limit)
       .limit(parseInt(limit));
     res.status(200).json({
