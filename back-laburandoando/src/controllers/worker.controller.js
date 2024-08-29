@@ -132,10 +132,48 @@ const updateWorker = async (req, res) => {
   }
 };
 
+const deleteWorker = async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({
+      data: null,
+      error: "El id es requerido.",
+    });
+  }
+
+  try {
+    const worker = await Worker.findById(id).populate('works');
+    
+    if (!worker) {
+      return res.status(404).json({
+        data: null,
+        error: "No se encontró el trabajador.",
+      });
+    }
+
+    await Work.deleteMany({ _id: { $in: worker.works } });
+
+    await Worker.findByIdAndDelete(id);
+
+    res.status(204).json({
+      data: null,
+      error: null,
+    });
+  } catch (error) {
+    console.error("Error al eliminar el trabajador:", error);
+    res.status(500).json({
+      data: null,
+      error: "Ha ocurrido un error al eliminar el trabajador.",
+    });
+  }
+};
+
 module.exports = {
   createWorker,
   getWorkers,
   getWorkerById,
   getWorkerByName,
   updateWorker,
+  deleteWorker
 };
