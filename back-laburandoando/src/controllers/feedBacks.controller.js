@@ -4,7 +4,7 @@ const getFeedbacks = async (req, res) => {
   const { read } = req.query;
 
   try {
-    const feedbacks = await FeedBack.find({ isRead: read });
+    const feedbacks = await FeedBack.find({ isRead: read }).populate("worker");
     return res.status(200).json({
       data: feedbacks,
       error: null,
