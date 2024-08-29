@@ -46,6 +46,32 @@ const addComment = async (req, res) => {
   }
 };
 
+const deleteReview = async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({
+      data: null,
+      error: "El id es requerido.",
+    });
+  }
+
+  try {
+    await Review.findByIdAndDelete(id);
+    res.status(204).json({
+      data: null,
+      error: null,
+    });
+  } catch (error) {
+    console.error("Error al eliminar el comentario:", error);
+    res.status(500).json({
+      data: null,
+      error: "Ha ocurrido un error al eliminar el comentario.",
+    });
+  }
+};
+
 module.exports = {
   addComment,
+  deleteReview
 };
