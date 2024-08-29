@@ -86,8 +86,34 @@ const updatePassword = async (req, res) => {
   }
 }
 
+const deleteUser = async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({
+      data: null,
+      error: "El id es requerido.",
+    });
+  }
+
+  try {
+    await User.findByIdAndDelete(id);
+    res.status(204).json({
+      data: null,
+      error: null,
+    });
+  } catch (error) {
+    console.error("Error al eliminar el usuario:", error);
+    res.status(500).json({
+      data: null,
+      error: "Ha ocurrido un error al eliminar el usuario.",
+    });
+  }
+};
+
 module.exports = {
   getUsers,
   updateImg,
   updatePassword,
+  deleteUser
 };
