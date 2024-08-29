@@ -1,6 +1,7 @@
 const Worker = require("../models/worker.model");
 const { cryptPassword } = require("../common/functions");
 const User = require("../models/user.model");
+const Work = require("../models/work.model");
 
 const createWorker = async (req, res) => {
   const { fullname, mail, img, password, phone, address, outstanding, local } = req.body;
