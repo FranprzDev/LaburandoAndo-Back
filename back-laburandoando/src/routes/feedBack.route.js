@@ -4,7 +4,7 @@ const {
   idParamValidations,
   bodyFeedBackValidations,
 } = require("../common/expressValidations");
-const { getFeedbacks, changeReadState, createFeedBack } = require("../controllers/feedBacks.controller");
+const { getFeedbacks, changeReadState, createFeedBack, deleteFeedback } = require("../controllers/feedBacks.controller");
 
 const feedBackRouter = express.Router();
 
@@ -24,5 +24,11 @@ feedBackRouter.post("/:id",
     expressValidations,
     createFeedBack
 );
+
+feedBackRouter.delete(
+    "/delete/:id",
+    idParamValidations,
+    deleteFeedback
+  );
 
 module.exports = feedBackRouter;
