@@ -15,8 +15,8 @@ const workSchema = mongoose.Schema({
     required: true,
     trim: true,
     unique: false,
-    minLength: 25,
-    maxLength: 500,
+    minLength: 300,
+    maxLength: 900,
   },
   location: {
     type: String,
