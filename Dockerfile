@@ -1,7 +1,5 @@
 # Utiliza una imagen base oficial de Node.js
-FROM alpine:3.19
-
-ENV NODE_VERSION 22.7.0
+FROM node:18-alpine
 
 # Establece el directorio de trabajo en la imagen de Docker
 WORKDIR src/app
