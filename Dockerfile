@@ -2,7 +2,7 @@
 FROM node:18
 
 # Establece el directorio de trabajo en la imagen de Docker
-WORKDIR /usr/src/app
+WORKDIR src/app
 
 # Copia los archivos package.json y package-lock.json para instalar dependencias
 COPY package*.json ./
