@@ -1,20 +1,20 @@
-# Use the official Node.js image as the base image
-FROM node:18-alpine
+# Utiliza una imagen base oficial de Node.js
+FROM node:18
 
-# Set the working directory in the container
-WORKDIR /app
+# Establece el directorio de trabajo en la imagen de Docker
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json (if available)
+# Copia los archivos package.json y package-lock.json para instalar dependencias
 COPY package*.json ./
 
-# Install the application dependencies
-RUN npm install --production && npm cache clean --force
+# Instala las dependencias del proyecto
+RUN npm install
 
-# Copy the rest of the application files into the working directory
+# Copia el resto del código de la aplicación al contenedor
 COPY . .
 
-# Expose the port the app runs on
+# Exponer el puerto que la aplicación utiliza (por defecto 3000, ajústalo si es diferente)
 EXPOSE 3000
 
-# Define the entry point for the container
-CMD ["npm", "start"]
+# Comando para correr la aplicación
+CMD ["node", "index.js"]
