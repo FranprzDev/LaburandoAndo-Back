@@ -1,5 +1,5 @@
 # Utiliza una imagen base oficial de Node.js
-FROM node:20-alphine
+FROM node:20
 
 # Establece el directorio de trabajo en la imagen de Docker
 WORKDIR src/app
