@@ -1,6 +1,8 @@
 # Utiliza una imagen base oficial de Node.js
-FROM node:18-alpine
+FROM alpine:3.19
 
+# Instalar Node.js y npm
+RUN apk add --no-cache nodejs npm
 # Establece el directorio de trabajo en la imagen de Docker
 WORKDIR src/app
 
