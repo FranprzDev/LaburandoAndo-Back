@@ -4,7 +4,7 @@ FROM alpine:3.19
 # Instalar Node.js y npm
 RUN apk add --no-cache nodejs npm
 # Establece el directorio de trabajo en la imagen de Docker
-WORKDIR src/app
+WORKDIR app
 
 # Copia los archivos package.json y package-lock.json para instalar dependencias
 COPY package*.json ./
