@@ -40,7 +40,7 @@ const userSchema = mongoose.Schema({
     img: {
         type: String,
         required: true,
-        default: "https://asset.cloudinary.com/dh4b6g2ld/09d204f015420e4d017ad076b31d10f4",
+        default: "https://res.cloudinary.com/dh4b6g2ld/image/upload/fl_preserve_transparency/v1725326098/Logo_ghomu4.jpg?_s=public-apps",
         trim: true,
         unique: false,
     },

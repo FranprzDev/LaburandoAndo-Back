@@ -18,7 +18,7 @@ const jwtRegisterClient = async (req, res) => {
             mail,
             password: cryptPassword(password),
             fullname,
-            img: img ? img : "https://asset.cloudinary.com/dh4b6g2ld/09d204f015420e4d017ad076b31d10f4"
+            img: img ? img : "https://res.cloudinary.com/dh4b6g2ld/image/upload/fl_preserve_transparency/v1725326098/Logo_ghomu4.jpg?_s=public-apps"
         });
 
         await newUser.save();
