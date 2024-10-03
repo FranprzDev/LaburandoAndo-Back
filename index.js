@@ -7,8 +7,6 @@ const { fillDB } = require("./src/common/functions");
 require('./src/auth/auth');
 const session = require('express-session')
 const passport = require('passport');
-const { localStrategy, serializeUser, deserializeUser } = require('./src/middlewares/passport.middlewares');
-/* rutas */
 
 const user = require("./src/routes/user.route");
 const workerRouter = require("./src/routes/worker.route");
@@ -35,7 +33,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// Rutas para la aplicación
 app.use("/user", user);
 app.use("/worker", workerRouter);
 app.use("/category", categoryRouter);

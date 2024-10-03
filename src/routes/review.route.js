@@ -7,7 +7,6 @@ const reviewRouter = express.Router();
 
 reviewRouter.put("/:idWork",
     reviewValidations,
-    /* Falta una validación para saber si el usuario tiene activo actualmente un trabjao con esa persona */
     addComment,
 );
 
