@@ -7,7 +7,6 @@ const { fillDB } = require("./src/common/functions");
 require('./src/auth/auth');
 const session = require('express-session')
 const passport = require('passport');
-
 const user = require("./src/routes/user.route");
 const workerRouter = require("./src/routes/worker.route");
 const categoryRouter = require("./src/routes/category.route");
